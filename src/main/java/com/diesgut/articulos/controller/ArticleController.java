@@ -33,6 +33,12 @@ public class ArticleController {
 	protected static final String ARTICLE_PAGE_VIEW = "articles/allArticles"; // list with pagination
 
 	protected static final String INDEX_VIEW = "index"; // articles with pagination
+	
+	/*
+	 * aqui definiremos las variables de la paginacion
+	 * luego implementaramos el metodo initPagination
+	 * 
+	 * */
 
 	@Autowired
 	private ArticleServiceImp articleService;
