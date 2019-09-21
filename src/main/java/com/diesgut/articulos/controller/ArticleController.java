@@ -81,7 +81,7 @@ public class ArticleController {
 	@GetMapping("/article/{id}/edit")
 	public String editArticle(@PathVariable(value = "id") Long articleId, Model model) {
 		model.addAttribute("article", articleService.findById(articleId));
-		return ARTICLE_ADD_FORM_VIEW;
+		return ARTICLE_EDIT_FORM_VIEW;
 	}
 
 }

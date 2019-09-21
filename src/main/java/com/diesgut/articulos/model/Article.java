@@ -1,5 +1,7 @@
 package com.diesgut.articulos.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +14,11 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 
+import com.diesgut.articulos.audit.DateAudit;
+
 @Entity
 @Table(name = "articles")
-public class Article {
+public class Article extends DateAudit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +51,8 @@ public class Article {
 
 	public Article() {
 		super();
+		this.setCreatedAt(new Date());
+		this.setUpdatedAt(new Date());
 	}
 
 	public Article(Long articleId,
@@ -55,7 +61,7 @@ public class Article {
 			@NotEmpty(message = "Ingresar un autor") String author,
 			@NotEmpty(message = "Debe ingresar una descripcion") String description,
 			@NotEmpty(message = "Debe ingresar el contenido") String content) {
-		super();
+		this();
 		this.articleId = articleId;
 		this.title = title;
 		this.category = category;
