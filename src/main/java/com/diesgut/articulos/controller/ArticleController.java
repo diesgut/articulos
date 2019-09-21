@@ -1,5 +1,6 @@
 package com.diesgut.articulos.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class ArticleController {
 
 	@GetMapping("/")
 	public ModelAndView index() {
-	//	List<Article> articles = articleService.getAllArticles();
+		List<Article> articles = articleService.getAllArticles();
 		ModelAndView model = new ModelAndView(INDEX_VIEW);
-	//	model.addObject("articles", articles);
+		model.addObject("articles", articles);
 		return model;
 	}
 

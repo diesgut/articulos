@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "articles")
 public class Article {
@@ -17,7 +19,7 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "article_id")
-	private Long articeId;
+	private Long articleId;
 
 	@Size(min = 2, max = 100, message = "Titulo debe tener entre 2 a 100 caracteres")
 	@Column(name = "title")
@@ -32,11 +34,13 @@ public class Article {
 	private String author;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@NotEmpty(message = "Debe ingresar una descripcion")
 	@Column(name = "description")
 	private String description;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@NotEmpty(message = "Debe ingresar el contenido")
 	@Column(name = "content")
 	private String content;
@@ -45,14 +49,14 @@ public class Article {
 		super();
 	}
 
-	public Article(Long articeId,
+	public Article(Long articleId,
 			@Size(min = 2, max = 100, message = "Titulo debe tener entre 2 a 100 caracteres") String title,
 			@NotEmpty(message = "Ingresar una categoria") String category,
 			@NotEmpty(message = "Ingresar un autor") String author,
 			@NotEmpty(message = "Debe ingresar una descripcion") String description,
 			@NotEmpty(message = "Debe ingresar el contenido") String content) {
 		super();
-		this.articeId = articeId;
+		this.articleId = articleId;
 		this.title = title;
 		this.category = category;
 		this.author = author;
@@ -60,12 +64,12 @@ public class Article {
 		this.content = content;
 	}
 
-	public Long getArticeId() {
-		return articeId;
+	public Long getArticleId() {
+		return articleId;
 	}
 
-	public void setArticeId(Long articeId) {
-		this.articeId = articeId;
+	public void setArticleId(Long articleId) {
+		this.articleId = articleId;
 	}
 
 	public String getTitle() {

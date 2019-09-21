@@ -12,7 +12,7 @@ import com.diesgut.articulos.repository.IArticleRepository;
 import com.diesgut.articulos.service.IArticleService;
 
 @Service
-@Transactional(readOnly = true)
+
 public class ArticleServiceImp implements IArticleService {
 
 	@Autowired
@@ -24,13 +24,11 @@ public class ArticleServiceImp implements IArticleService {
 	}
 
 	@Override
-	@Transactional
 	public Article createArticle(Article article) {
 		return articleRepository.save(article);
 	}
 
 	@Override
-	@Transactional
 	public Article updateArticle(Long idArticle, Article article) {
 		Article articleDB = findById(idArticle);
 		articleDB.setCategory(article.getCategory());
