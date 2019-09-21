@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.diesgut.articulos.exception.ResourceNotFoundException;
 import com.diesgut.articulos.model.Article;
 import com.diesgut.articulos.repository.IArticleRepository;
 import com.diesgut.articulos.service.IArticleService;
@@ -46,6 +47,9 @@ public class ArticleServiceImp implements IArticleService {
 	@Override
 	public Article findById(Long id) {
 		Optional<Article> article = articleRepository.findById(id);
+		if (!article.isPresent()) {
+			throw new ResourceNotFoundException("El articulo con el ID:" + id + " no se encuentra");
+		}
 		return article.get();
 	}
 
